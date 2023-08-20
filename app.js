@@ -1,19 +1,14 @@
 const http = require('http');
 
-const express = require('express');
 
-const app = express();
+const server = http.createServer((req, res) => {
+    //console.log(res)
+    const url = req.url;
+    if (url === '/') {
+        res.write('<h1> Hi I am node js and are Masoumeh</h1>')
 
-app.use((req, res, next) => {
-    console.log('In the middleware!');
-    next(); // Allows the request to continue to the next middleware in line
-});
-
-app.use((req, res, next) => {
-    console.log('In another middleware!');
-    res.send('<h1>Hello from Express!</h1>');
-});
-
-const server = http.createServer(app);
-
-server.listen(3000);
+        return res.end()
+    }
+    res.write('<h1> Hi I am node js</h1>')
+})
+server.listen(4000)
